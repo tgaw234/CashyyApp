@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details and Calculation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        }
+
+        button {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .result {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+        }
+
+        .payment-methods img {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .payment-methods h3 {
+            text-align: center;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        .tags-container {
+            margin-top: 30px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #007bff;
+            color: white;
+            margin-top: 40px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+    
+    <script>
+        // Function to get the value from URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+    
+        // Function to preselect the payment method based on the URL parameter
+        function preselectPaymentMethod() {
+            const paymentMethod = getUrlParameter('method');
+            document.getElementById('paymentmethod').innerText = paymentMethod;
+    
+            // Display the relevant section based on the selected payment method
+            if        (paymentMethod === 'Venmo') {
+                document.getElementById('venmo').style.display = 'block';
+            } else if (paymentMethod === 'PayPal') {
+                document.getElementById('paypal').style.display = 'block';
+            } else if (paymentMethod === 'Zelle') {
+                document.getElementById('zelle').style.display = 'block';
+            } else if (paymentMethod === 'Cashapp') {
+                document.getElementById('CashApp').style.display = 'block';
+            } else if (paymentMethod === 'ApplePay'){
+                document.getElementById('ApplePay').style.display = 'block';
+            } else if (paymentMethod === 'Bitcoin'){
+                document.getElementById('Bitcoin').style.dislay = 'block';
+            } else if (paymentMethod === 'Giftcards'){
+                document.getElementById('Giftcards').style.display = 'block';
+            }
+        }
+    
+        // Call the function when the page loads
+        window.onload = preselectPaymentMethod;
+    </script>
+    
+</head>
+<body>
+
+    <div class="container">
+        <h2>Payment Method Tags and Calculation</h2>
+
+        <div class="form-group">
+            <label for="paymentmethod">Selected Payment Method:</label>
+            <div class="payment-methods">
+                <div id="venmo" style="display: none;">
+                    <img src="./venmo.svg" alt="Venmo">
+                    <h3><label id="paymentmethod">Venmo</label></h3>
+                </div>
+
+                <div id="paypal" style="display: none;">
+                    <img src="./paypal-svgrepo-com.svg" alt="PayPal">
+                    <h3><label id="paymentmethod">PayPal</label></h3>
+                </div>
+
+                <div id="zelle" style="display: none;">
+                    <img src="./icons8-zelle-48.png" alt="Zelle">
+                    <h3><label id="paymentmethod">Zelle</label></h3>
+                </div>
+
+                <div id="ApplePay" style="display: none;">
+                    <img src="./Apple Pay Card.svg" alt="ApplePay">
+                    <h3><label id="paymentmethod">ApplePay</label></h3>
+                </div>
+
+                <div id="CashApp" style="display: none;">
+                    <img src="./Cash app Logo.svg" alt="CashApp">
+                    <h3><label id="paymentmethod">CashApp</label></h3>
+                </div>
+
+                <div id="Giftcards" style="display: none;">
+                    <img src="./gift-card-icon.svg" alt="Giftcards">
+                    <h3><label id="paymentmethod">Giftcards</label></h3>
+                </div>
+
+                <div id="Bitcoin" style="display: none;">
+                    <img src="./Bitcoinlogo.svg" alt="Bitcoin">
+                    <h3><label id="paymentmethod">Bitcoin</label></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Enter Amount (USD):</label>
+            <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+        </div>
+
+        <div class="result-container">
+            <button type="button" class="btn btn-primary" style="padding: 5px; text-align: center; width: 100px;" onclick="calculateAmount()">Calculate</button>
+            <div class="result" id="result">Expected Amount: $0.00</div>
+        </div>
+
+        <div class="tags-container" id="tags-container">
+            <!-- Tags will be dynamically inserted here -->
+        </div>
+
+        <!-- Continue Button -->
+        <button type="button" id="continueButton" class="btn btn-success" style="display: none;" onclick="goToNextPage()">Continue</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Payment Tracking Application. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const exchangeRates = {
+            PayPal: 740,
+            Venmo: 735,
+            Zelle: 745,
+            ApplePay: 730,
+            Cashapp: 720,
+            Bitcoin: 800, 
+            Giftcards: 765 
+        };
+
+        let calculatedAmount = 0;
+
+        function calculateAmount() {
+            const paymentMethod = getUrlParameter('method');
+            const amount = parseFloat(document.getElementById('amount').value);
+            const rate = exchangeRates[paymentMethod];
+
+            if (isNaN(amount) || !rate) {
+                document.getElementById('result').textContent = 'Please enter a valid amount and select a valid payment method.';
+                return;
+            }
+
+            calculatedAmount = amount * rate;
+            document.getElementById('result').textContent = `Expected Amount in NGN: ₦${calculatedAmount.toFixed(2)}`;
+
+            // Show the continue button after calculation
+            document.getElementById('continueButton').style.display = 'block';
+        }
+
+        function goToNextPage() {
+            const paymentMethod = getUrlParameter('method');
+            
+            // Redirect to the next page with paymentMethod and calculatedAmount as query parameters
+            window.location.href = `submit.html?method=${paymentMethod}&calculatedAmount=${calculatedAmount.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>

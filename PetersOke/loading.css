@@ -1,0 +1,59 @@
+.loading .icon-chevron-left {
+  width: 9px;
+  height: 15px;
+}
+.loading .back {
+  border-radius: 10px;
+  border: 1px solid #D8DADC;
+  position: relative;
+  margin-top: 5px;
+  display: flex;
+  padding: 8px 18px 16px 12px;
+  width: 39px;
+  height: 39px;
+  box-sizing: border-box;
+}
+.loading .star-8 {
+  width: 46px;
+  height: 44px;
+}
+.loading .container {
+  margin-bottom: 261px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+.loading .ellipse-2 {
+  width: 60px;
+  height: 60px;
+}
+.loading .group-2 {
+  border-radius: 30px;
+  background: #E4E4E4;
+  position: relative;
+  margin: 0 0 10px 17px;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+}
+.loading .kindly-hold-on-our-admin-is-processing-your-transaction {
+  margin-left: 34px;
+  text-align: center;
+  overflow-wrap: break-word;
+  font-family: 'ABeeZee';
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.294;
+  color: #000000;
+}
+.loading {
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 47px 24px 378px 7px;
+  box-sizing: border-box;
+}

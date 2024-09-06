@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+ 
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+ 
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+ 
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+ 
+        .option {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+ 
+            .option:hover {
+                transform: scale(1.05);
+            }
+ 
+            .option img {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+ 
+            .option h3 {
+                margin: 10px 0;
+                color: #333;
+            }
+ 
+            .option p {
+                margin: 0;
+                color: #666;
+                font-size: 1rem;
+            }
+ 
+            .option a {
+                display: block;
+                margin-top: 10px;
+                text-decoration: none;
+                color: #fff;
+                background-color: #007bff;
+                padding: 10px 15px;
+                border-radius: 5px;
+                transition: background-color 0.2s;
+            }
+ 
+                .option a:hover {
+                    background-color: #0056b3;
+                }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Select a Payment Method</h1>
+<div class="options">
+    <div class="option">
+        <img src="./paypal-svgrepo-com.svg" alt="PayPal" style="width: 100px;">
+        <h3>PayPal</h3>
+        <p>Current Rate: $1 = NGN 740</p>
+        <a href="exchange.html?method=PayPal" class="btn btn-primary">Select PayPal</a>
+    </div>    
+<div class="option">
+        <img src="./venmo.svg" alt="Venmo" style="width: 100px;">
+        <h3>Venmo</h3>
+        <p>Current Rate: $1 = NGN 735</p>
+        <a href="Exchange.html?method=Venmo" class="btn btn-primary">Select Venmo</a>
+    </div>
+<div class="option">
+        <img src="./icons8-zelle-48.png" alt="Zelle" style="width: 100px;">
+        <h3>Zelle</h3>
+        <p>Current Rate: $1 = NGN 738</p>
+        <a href="exchange.html?method=Zelle" class="btn btn-primary">Select Zelle</a>
+    </div>
+<div class="option">
+        <img src="./Apple Pay Card.svg" alt="ApplePay" style="width: 100px;">
+        <h3>ApplePay</h3>
+        <p>Current Rate: $1 = NGN 742</p>
+        <a href="exchange.html?method=ApplePay" class="btn btn-primary">Select ApplePay</a>
+    </div>
+<div class="option">
+        <img src="./Cash app Logo.svg" alt="Cashapp" style="width: 100px;">
+        <h3>Cashapp</h3>
+        <p>Current Rate: $1 = NGN 745</p>
+        <a href="exchange.html?method=Cashapp" class="btn btn-primary">Select Cashapp</a>
+        </div>
+<div class="option">
+        <img src="./Bitcoinlogo.svg" alt="Bitcoin" style="width: 200px;">
+        <h3>Bitcoin</h3>
+        <p>Current Rate: $1 = NGN 800</p>
+        <a href="exchange.html?method=Bitcoin" class="btn btn-primary">Select Bitcoin</a>
+        </div>
+<div class="option">
+        <img src="./gift-card-icon.svg" alt="Giftcards" style="width: 100px;">
+        <h3>Giftcards</h3>
+        <p>Current Rate: $1 = NGN 765</p>
+        <a href="exchange.html?method=Giftcards" class="btn btn-primary">Select Giftcards</a>
+         </div>
+</div>
+</div>
+</body>
+</html>

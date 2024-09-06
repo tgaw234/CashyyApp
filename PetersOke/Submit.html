@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Payment</title>
+<link rel="stylesheet" href="/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./script.js"></script>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+ 
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+ 
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+ 
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+ 
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+ 
+        input[type="file"] {
+            padding: 5px;
+        }
+ 
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+ 
+        button:hover {
+            background-color: #2980b9;
+        }
+ 
+        #giftCardOptions {
+            display: none;
+        }
+ 
+        #paymentForm {
+            margin-top: 20px;
+        }
+ 
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            color: #2c3e50;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+ 
+        select:focus, 
+        input:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+</style>
+<script>
+    // Function to get the value from URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Function to preselect the option in the dropdown
+    function preselectPaymentMethod() {
+        const paymentMethod = getUrlParameter('method');
+        if (paymentMethod) {
+            document.getElementById('paymentMethod').value = paymentMethod;
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = preselectPaymentMethod;
+</script>
+</head>
+<body>
+<h1>Submit Payment</h1>
+<form id="paymentForm" action="loading.html" method="post" enctype="multipart/form-data">
+    <label for="paymentMethod">Payment Method</label>
+    <select id="paymentMethod" name="PaymentMethod" onchange="showGiftCardOptions()">
+        <option value="PayPal">PayPal</option>
+        <option value="Venmo">Venmo</option>
+        <option value="Zelle">Zelle</option>
+        <option value="ApplePay">ApplePay</option>
+        <option value="Cashapp">Cashapp</option>
+        <option value="Bitcoin">Bitcoin</option>
+        <option value="Giftcards">Giftcards</option>
+    </select>
+    
+    <div id="giftCardOptions" style="display:none;">
+        <label for="giftCardType">Gift Card Type</label>
+        <input type="text" id="giftCardType" name="GiftCardType">
+    </div>
+    
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" name="Amount" required>
+    
+    <label for="screenshotFile">Upload Screenshot</label>
+    <input type="file" id="screenshotFile" name="ScreenshotFile" accept="image/*" required>
+    
+    <label for="accountDetails">Account Details</label>
+    <textarea id="accountDetails" name="AccountDetails" required></textarea>
+    
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function showGiftCardOptions() {
+        var paymentMethod = document.getElementById('paymentMethod').value;
+        var giftCardOptions = document.getElementById('giftCardOptions');
+        if (paymentMethod === 'Giftcards') {
+            giftCardOptions.style.display = 'block';
+        } else {
+            giftCardOptions.style.display = 'none';
+        }
+    }
+
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
+
+        // Redirect to the loading page
+        window.location.href = 'loading.html';
+    });
+</script>
+</body>
+</html>
